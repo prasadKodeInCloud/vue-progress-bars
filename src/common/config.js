@@ -1,1 +1,1 @@
-export default PROGRESS_API = "http://pb-api.herokuapp.com/";
+export const PROGRESS_API = "http://pb-api.herokuapp.com/";

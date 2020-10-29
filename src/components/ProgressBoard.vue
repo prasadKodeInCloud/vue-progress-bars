@@ -38,6 +38,7 @@
 <script>
 import ProgressBar from "@/components/ProgressBar";
 import ControlButton from "@/components/ControlButton";
+
 export default {
   name: "progress-board",
   props: {
@@ -61,9 +62,7 @@ export default {
   data() {
     return {
       selectedIndex: `0`,
-      barValues: this.bars.map((value) => {
-        return { value: value };
-      }),
+      barValues: this.barsInfo(),
     };
   },
   components: {
@@ -71,8 +70,17 @@ export default {
     ControlButton,
   },
   computed: {},
-  mounted() {},
+  watch: {
+    bars() {
+      this.barValues = this.barsInfo();
+    },
+  },
   methods: {
+    barsInfo() {
+      return this.bars.map((value) => {
+        return { value: value };
+      });
+    },
     optionName(index) {
       return `#Progress${index + 1}`;
     },

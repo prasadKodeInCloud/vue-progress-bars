@@ -38,11 +38,6 @@ export default {
       return styles;
     },
   },
-  watch: {
-    value() {
-      console.log("changed");
-    },
-  },
   methods: {},
 };
 </script>
