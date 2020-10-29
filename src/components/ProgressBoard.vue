@@ -6,6 +6,7 @@
         v-for="(item, index) in barValues"
         :key="`progress_${index}`"
         :value="item.value"
+        :limit="limit"
       />
     </div>
 

@@ -1,5 +1,7 @@
 import ProgressBoard from "@/components/ProgressBoard";
+import { mount } from "@vue/test-utils";
 
 test("board-spec", () => {
-  console.log(ProgressBoard);
+  const wrapper = mount(ProgressBoard);
+  expect(wrapper.html()).toMatchSnapshot();
 });
