@@ -92,22 +92,30 @@ export default {
 </script>
 
 <style scoped lang="less">
-.controllers-panel {
-  margin: auto;
-  width: 50%;
-  padding: 10px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
+@import "../styles/index.less";
 
-  button {
-    margin: 3px;
+@media (min-width: @desktopScreen) {
+  .controllers-panel {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
   }
+}
 
-  select {
-    margin-top: 3px;
-    height: 22px;
+@media (max-width: @mobileScreen) {
+  .controllers-panel {
+    .dropdown {
+      margin-bottom: 10px;
+    }
   }
+}
+
+select {
+  margin-top: 3px;
+  height: 22px;
 }
 </style>
