@@ -1,37 +1,42 @@
 <template>
   <div>
     <div class="progress-panel">
-      <div
-        :key="`progress_${option.value}`"
+      <ProgressBar
         template
-        v-for="(option, index) in progressBarOptions"
-      >
-        {{ index + 1 }}
-      </div>
+        v-for="(item, index) in barValues"
+        :key="`progress_${index}`"
+        :value="item.value"
+      />
     </div>
 
     <div class="controllers-panel">
       <div>
-        <select class="dropdown" v-model="selectedOption">
+        <select class="dropdown" v-model="selectedIndex">
           <option
-            :key="`option_${option.value}`"
-            v-for="option in progressBarOptions"
-            v-bind:value="option.value"
+            :key="`option_${index}`"
+            v-for="(option, index) in bars"
+            :value="index"
           >
-            {{ option.text }}
+            {{ optionName(index) }}
           </option>
         </select>
       </div>
       <div>
-        <button :key="`button_${value}`" template v-for="value in buttons">
-          {{ value }}
-        </button>
+        <ControlButton
+          :key="`button_${value}`"
+          :value="value"
+          @click="onButtonClick"
+          template
+          v-for="value in buttons"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ProgressBar from "@/components/ProgressBar";
+import ControlButton from "@/components/ControlButton";
 export default {
   name: "progress-board",
   props: {
@@ -54,21 +59,26 @@ export default {
   },
   data() {
     return {
-      selectedOption: `option_1`,
+      selectedIndex: `0`,
+      barValues: this.bars.map((value) => {
+        return { value: value };
+      }),
     };
   },
-  components: {},
-  computed: {
-    progressBarOptions() {
-      let index = 0;
-      return this.bars.map(() => {
-        index++;
-        return { text: `#progress${index}`, value: `option_${index}` };
-      });
+  components: {
+    ProgressBar,
+    ControlButton,
+  },
+  computed: {},
+  mounted() {},
+  methods: {
+    optionName(index) {
+      return `#Progress${index + 1}`;
+    },
+    onButtonClick(payload) {
+      this.barValues[parseInt(this.selectedIndex)].value += payload.amount;
     },
   },
-  mounted() {},
-  methods: {},
 };
 </script>
 
