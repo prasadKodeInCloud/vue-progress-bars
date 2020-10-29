@@ -11,7 +11,7 @@ npm install
 ```
 npm run test
 
-### Compiles and hot-reloads for development
+### Run unit tests for components
 ```
 
 npm run serve
