@@ -85,7 +85,9 @@ export default {
       return `#Progress${index + 1}`;
     },
     onButtonClick(payload) {
-      this.barValues[parseInt(this.selectedIndex)].value += payload.amount;
+      let index = parseInt(this.selectedIndex);
+      let val = this.barValues[index].value + payload.amount;
+      this.barValues[index].value = val < 0 ? 0 : val;
     },
   },
 };
